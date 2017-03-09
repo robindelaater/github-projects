@@ -1,6 +1,3 @@
-/**
- * Created by richardperdaan on 07-03-17.
- */
 if(window.mypa == null || window.mypa == undefined){
     window.mypa = {};
 }
@@ -9,11 +6,9 @@ if(window.mypa.fn == null || window.mypa.fn == undefined){
 }
 
 (function () {
-    var getColumns, appendColumns,appendCards, getUrlParameter,repository;
+    var getColumns, appendColumns,appendCards, getUrlParameter;
     window.mypa.load = function () {
         var columns = getColumns();
-        repository = getUrlParameter();
-
         $.each(columns, function(key, value) {
             appendColumn(value);
         });
@@ -43,7 +38,7 @@ if(window.mypa.fn == null || window.mypa.fn == undefined){
 
     appendCards = function (column) {
         $.ajax({
-            url: "https://api.github.com/repos/myparcelnl/" + repository + "/issues?labels=" + column.alias,
+            url: "https://api.github.com/repos/myparcelnl/magento1/issues?labels=" + column.alias,
             success : function(issues) {
                 $.each(issues, function(key, issue) {
                     $('#label-' + column.alias).append('<div class="card"><a href="' + issue.html_url + '" target="_blank" class="card_url"><h3>' + issue.title + '</h3></a></div>');
@@ -51,30 +46,10 @@ if(window.mypa.fn == null || window.mypa.fn == undefined){
             }
         });
     };
-
-    getUrlParameter = function () {
-        var scripts = document.getElementsByTagName("script");
-        for (var i = 0; i < scripts.length; i++) {
-
-            var pa = scripts[i].src.split("?").pop().split("&");
-
-            var repo = {};
-            for (var j = 0; j < pa.length; j++) {
-                var kv = pa[j].split("=");
-                repo[kv[0]] = kv[1];
-            }
-            //return repo.rep;
-            console.log(repo);
-            if (repo.rep == "magento1"){
-
-                return repo.rep;
-            }
-        }
-    }
-
 })();
 
 $(document).ready(function() {
-    window.mypa.load();
+    if ($(".mypa_columns")[0]){
+        window.mypa.load();
+    }
 });
-
