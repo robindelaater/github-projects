@@ -1,0 +1,40 @@
+.mainClass{
+    padding: 0;
+    margin:0;
+    width: 100%;
+}
+.container_columns {
+    display: block;
+}
+.column{
+    float:left;
+    margin: 10px;
+    border-radius: 2px;
+    border-color: #fafbfc;
+    background-color: #fafbfc;
+    border: 1px solid;
+    border-color:rgb(225, 228, 232);
+    width: 300px;
+    max-width: 100%;
+}
+
+.cards{
+    padding: 10px;
+    color: #01bbc5;
+}
+h2{
+    margin:10px;
+}
+.card{
+    border-top: 1px solid;
+    border-color:rgb(225, 228, 232);
+    padding-left:10px;
+}
+.card_url{
+    text-decoration: none;
+    color: #01bbc5;
+}
+.card_url:hover {
+    color: #1F618D;
+}
+
