@@ -35,6 +35,13 @@ h2{
     text-decoration: none;
     color: #01bbc5;
 }
+.card_url_color{
+    color: #01bbc5;
+}
 .card_url:hover {
     color: #1F618D;
+}
+.mypa_columns{
+    display: table;
+    margin: 0 auto;
 }

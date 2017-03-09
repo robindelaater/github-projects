@@ -38,10 +38,10 @@ if(window.mypa.fn == null || window.mypa.fn == undefined){
 
     appendCards = function (column) {
         $.ajax({
-            url: "https://api.github.com/repos/myparcelnl/magento1/issues?labels=" + column.alias,
+            url: "https://api.github.com/repos/myparcelnl/magento/issues?labels=" + column.alias + "&sort=updated-asc",
             success : function(issues) {
                 $.each(issues, function(key, issue) {
-                    $('#label-' + column.alias).append('<div class="card"><a href="' + issue.html_url + '" target="_blank" class="card_url"><h3>' + issue.title + '</h3></a></div>');
+                    $('#label-' + column.alias).append('<div class="card"><a href="' + issue.html_url + '" target="_blank" class="card_url"><h3 class="card_url_color">' + issue.title + '</h3></a></div>');
                 });
             }
         });
