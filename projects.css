@@ -45,3 +45,8 @@ h2{
     display: table;
     margin: 0 auto;
 }
+@media (max-width: 951px) {
+    .column{
+        width: 100%;
+    }
+}
