@@ -1,3 +1,19 @@
+/**
+ *
+ * Get issues from github
+ * Trigger actions:
+ * - Get data from github with the aliases
+ * - Show the columns on the screen with a title
+ * - Show inside the columns the cards
+ *
+ * If you want to add improvements, please create a fork in our GitHub:
+ * https://github.com/myparcelnl
+ *
+ * @author      Richard Perdaan <richard@myparcel.nl>
+ * @copyright   2017 MyParcel
+ * @link        https://github.com/myparcelnl/github-projects
+ */
+
 if(window.mypa == null || window.mypa == undefined){
     window.mypa = {};
 }
