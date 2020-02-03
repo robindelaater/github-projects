@@ -11,62 +11,66 @@
  *
  * @author      Richard Perdaan <richard@myparcel.nl>
  * @author 		Reindert Vetter <reindert@myparcel.nl>
+ * @author      Robin de Laater <me@robindelaater.nl>
  * @copyright   2017 MyParcel
  * @link        https://github.com/myparcelnl/github-projects
  */
 
-if(window.mypa == null || window.mypa == undefined){
-    window.mypa = {};
+if (window.mypa == null || window.mypa == undefined) {
+	window.mypa = {};
 }
-if(window.mypa.fn == null || window.mypa.fn == undefined){
-    window.mypa.fn = {};
+if (window.mypa.fn == null || window.mypa.fn == undefined) {
+	window.mypa.fn = {};
 }
 
-(function () {
-    var getColumns, appendColumns,appendCards, getUrlParameter;
-    window.mypa.load = function () {
-        var columns = getColumns();
-        $.each(columns, function(key, value) {
-            appendColumn(value);
-        });
-    };
+(function() {
+	window.mypa.load = function(version) {
+		// get version from somewhere, wouldn't know how to get this rn
+		getRelease('3.2.0');
+	};
 
-    getColumns = function () {
-        return [
-            {
-                alias: "todo",
-                title: "Todo"
-            },
-            {
-                alias: "in-progress",
-                title: "In progress"
-            },
-            {
-                alias: "done",
-                title: "Done"
-            }
-        ];
-    };
+	function getRelease(version) {
+		getDataAsync().then(data => {
+			$.each(data, release => {
+				const currentRelease = data[release];
+				if (currentRelease.tag_name === version) {
+					const releaseId = currentRelease.id;
+					getReleaseDataAsync(releaseId);
+				}
+				return Error('Could not get data from git.');
+			});
+		});
+	}
 
-    appendColumn = function (column) {
-        $('.mypa_columns').append('<div class="column"><h2>' + column.title + '</h2><div class="cards" id="label-' + column.alias + '"></div></div>');
-        appendCards(column)
-    };
+	async function getReleaseDataAsync(releaseId) {
+		fetch(
+			`https://api.github.com/repos/myparcelnl/magento/releases/${releaseId}`
+		)
+			.then(response => response.json())
+			.then(data => {
+				if (data.message !== 'Not Found') {
+					$('.mypa_columns').append(
+						`
+                                <h1>${data.name} Release Notes</h1>
+                                <pre markdown='1'>${data.body}</pre>
+                            `
+					);
+				} else {
+					$('.mypa_columns').append(`<p>${data.message}</p>`);
+				}
+			});
+	}
 
-    appendCards = function (column) {
-        $.ajax({
-            url: "https://api.github.com/repos/myparcelnl/magento/issues?labels=" + column.alias + "&sort=updated-asc",
-            success : function(issues) {
-                $.each(issues, function(key, issue) {
-                    $('#label-' + column.alias).append('<div class="card"><a href="' + issue.html_url + '" target="_blank" class="card_url"><h3 class="card_url_color">' + issue.title + '</h3></a></div>');
-                });
-            }
-        });
-    };
+	async function getDataAsync() {
+		const url = 'https://api.github.com/repos/myparcelnl/magento/releases';
+		let response = await fetch(url);
+		let data = await response.json();
+		return data;
+	}
 })();
 
 $(document).ready(function() {
-    if ($(".mypa_columns")[0]){
-        window.mypa.load();
-    }
+	if ($('.mypa_columns')[0]) {
+		window.mypa.load();
+	}
 });
