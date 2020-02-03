@@ -1,52 +1,58 @@
-.mainClass{
-    padding: 0;
-    margin:0;
-    width: 100%;
-}
-.container_columns {
-    display: block;
-}
-.column{
-    float:left;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    border-radius: 2px;
-    border-color: #fafbfc;
-    background-color: #ffffff;
-    border: 1px solid;
-    border-color:rgb(225, 228, 232);
-    width: 300px;
-    max-width: 100%;
-    padding-top: 10px;
+@import url('https://rsms.me/inter/inter.css');
+
+body {
+	font-family: 'Inter', Helvetica, sans-serif;
 }
 
-.cards{
-    color: #01bbc5;
+.mainClass {
+	padding: 0;
+	margin: 0;
+	width: 100%;
 }
-h2{
-    margin:10px;
+.container_columns {
+	display: block;
 }
-.card{
-    border-top: 1px solid;
-    border-color:rgb(225, 228, 232);
-    padding: 10px;
+.column {
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	border-radius: 2px;
+	border-color: #fafbfc;
+	background-color: #ffffff;
+	border: 1px solid;
+	border-color: rgb(225, 228, 232);
+	width: 300px;
+	max-width: 100%;
+	padding-top: 10px;
 }
-.card_url{
-    text-decoration: none;
-    color: #01bbc5;
+
+.cards {
+	color: #01bbc5;
 }
-.card_url_color{
-    color: #01bbc5;
+h2 {
+	margin: 10px;
+}
+.card {
+	border-top: 1px solid;
+	border-color: rgb(225, 228, 232);
+	padding: 10px;
+}
+.card_url {
+	text-decoration: none;
+	color: #01bbc5;
+}
+.card_url_color {
+	color: #01bbc5;
 }
 .card_url:hover {
-    color: #1F618D;
+	color: #1f618d;
 }
-.mypa_columns{
-    display: table;
-    margin: 0 auto;
+.mypa_columns {
+	display: table;
+	margin: 0 auto;
 }
 @media (max-width: 951px) {
-    .column{
-        width: 100%;
-    }
+	.column {
+		width: 100%;
+	}
 }
